@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subjects</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1 id="header">Subjects</h1>
+        <ul id="subjectList"></ul>
+        <button onclick="goBack()">Back</button>
+    </div>
+
+    <script>
+        const subjects = {
+            "CSE": {
+                "1": ["Mathematics", "Physics", "Programming in C", "Digital Logic"],
+                "2": ["Data Structures", "Discrete Mathematics", "OOPS", "Computer Organization"]
+            },
+            "ECE": {
+                "1": ["Engineering Physics", "Circuit Theory", "Electronic Devices", "Mathematics"],
+                "2": ["Signal Processing", "Network Analysis", "Microprocessors", "Digital Electronics"]
+            }
+        };
+
+        const branch = localStorage.getItem('selectedBranch');
+        const semester = localStorage.getItem('selectedSemester');
+        document.getElementById("header").innerText = `${branch} - Semester ${semester}`;
+
+        const subjectList = document.getElementById("subjectList");
+        if (subjects[branch] && subjects[branch][semester]) {
+            subjects[branch][semester].forEach(sub => {
+                let li = document.createElement("li");
+                li.innerText = sub;
+                li.onclick = function () {
+                    localStorage.setItem('selectedSubject', sub);
+                    window.location.href = 'resources.html';
+                };
+                li.style.cursor = "pointer";
+                subjectList.appendChild(li);
+            });
+        } else {
+            subjectList.innerHTML = "<li>No subjects available</li>";
+        }
+
+        function goBack() {
+            window.location.href = 'semesters.html';
+        }
+    </script>
+</body>
+</html>
