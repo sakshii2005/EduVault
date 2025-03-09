@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subjects</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1 id="header">Subjects</h1>
+        <ul id="subjectList"></ul>
+        <button onclick="goBack()">Back</button>
+    </div>
+
+    <script>
+        const subjects = {
+            "CSE": {
+                "1": {
+                    "Basic Electrical Engineering (BEE)": "https://drive.google.com/drive/folders/1C-eJzqA-IUCDCTPAhxZXCjZPiCIQIwpe?usp=sharing",
+                    "CAEG": "https://drive.google.com/drive/folders/15kQVdce9NEizHq3KsRJz_IEx3td9Rvc0?usp=sharing",
+                    "Engineering Chemistry (EC)": "https://drive.google.com/drive/folders/1R17-4JtfLYJ-qUHEiA3noyTo_8V99PdC?usp=sharing",
+                    "EC Lab": "https://drive.google.com/drive/folders/1sUn8-gZcHcUzozilwTUB79PHiQVeXJ7Q?usp=sharing",
+                    "EDC": "https://drive.google.com/drive/folders/13Q8WCtjWh6ZN-rraafI9CRgx9Cebwsw8?usp=sharing",
+                    "M&C": "https://drive.google.com/drive/folders/1DAK9h2vPSrxNzOmv9_494fbVqMvmiNQn?usp=sharing",
+                    "PPS": "https://drive.google.com/drive/folders/1QYJebASAhWl-wWBQYrCt9fSvcTn1g_-4?usp=sharing",
+                    "EWS": "https://drive.google.com/drive/folders/1wCFB0x63zAncRMH3nUwxJH-XeApM_unE?usp=sharing"
+                },
+                "2": {
+                    "AP Lab": "https://drive.google.com/drive/folders/1ro2n7w7QpB0vGE0AiUVR6d2Pcb9Hvq-K?usp=sharing",
+                    "EWS": "https://drive.google.com/drive/folders/1wCFB0x63zAncRMH3nUwxJH-XeApM_unE?usp=sharing",
+                    "Ordinary Differential Equations and Vector Calculus": "https://drive.google.com/drive/folders/1sGa-DQ-XWdfb-ttIMQAoLoqfZzKKhVX4",
+                    "Applied Physics": "https://drive.google.com/drive/folders/1RcJZRxU5LI32Plo7LWjIyGeN8p3Gg1Lj",
+                    "Python Programming": "https://drive.google.com/drive/folders/1Sp-z_LHDt1JWjN3q5WLP-nlZOHvGTqqW",
+                    "English for Skill Enhancement": "https://drive.google.com/drive/folders/1Z9jNYz4pEt9IliXTddh8kYE7lYbQ-Glc",
+                    "Engineering Workshop": "https://drive.google.com/drive/folders/1wCFB0x63zAncRMH3nUwxJH-XeApM_unE",
+                    "IT Workshop": "https://drive.google.com/drive/folders/1711TDCyrlA-r5jRsSC504DOKf5Vch0GD",
+                    "Elements of Computer Science and Engineering": "https://drive.google.com/drive/folders/19ovlMV7U5L2AnJ2M-ZX0qGiVZTR05YfV"
+                }
+            },
+            "CSM": {
+                "1": {
+                    "Matrices and Calculus": "https://drive.google.com/drive/folders/1DAK9h2vPSrxNzOmv9_494fbVqMvmiNQn",
+                    "Applied Physics": "https://drive.google.com/drive/folders/1RcJZRxU5LI32Plo7LWjIyGeN8p3Gg1Lj",
+                    "Programming for Problem Solving": "https://drive.google.com/drive/folders/1QYJebASAhWl-wWBQYrCt9fSvcTn1g_-4",
+                    "Basic Electrical Engineering": "https://drive.google.com/drive/folders/1C-eJzqA-IUCDCTPAhxZXCjZPiCIQIwpe",
+                    "English for Skill Enhancement": "https://drive.google.com/drive/folders/1Z9jNYz4pEt9IliXTddh8kYE7lYbQ-Glc",
+                    "Applied Physics Laboratory": "https://drive.google.com/drive/folders/1ro2n7w7QpB0vGE0AiUVR6d2Pcb9Hvq-K",
+                    "Engineering Workshop": "https://drive.google.com/drive/folders/1wCFB0x63zAncRMH3nUwxJH-XeApM_unE",
+                    "IT Workshop": "https://drive.google.com/drive/folders/1711TDCyrlA-r5jRsSC504DOKf5Vch0GD"
+                },
+                "2": {
+                    "Ordinary Differential Equations and Vector Calculus": "https://drive.google.com/drive/folders/1sGa-DQ-XWdfb-ttIMQAoLoqfZzKKhVX4",
+                    "Engineering Chemistry": "https://drive.google.com/drive/folders/1R17-4JtfLYJ-qUHEiA3noyTo_8V99PdC",
+                    "Python Programming": "https://drive.google.com/drive/folders/1Sp-z_LHDt1JWjN3q5WLP-nlZOHvGTqqW",
+                    "Computer Aided Engineering Graphics": "https://drive.google.com/drive/folders/15kQVdce9NEizHq3KsRJz_IEx3td9Rvc0",
+                    "Electronic Devices and Circuits": "https://drive.google.com/drive/folders/13Q8WCtjWh6ZN-rraafI9CRgx9Cebwsw8",
+                    "Engineering Chemistry Laboratory": "https://drive.google.com/drive/folders/1sUn8-gZcHcUzozilwTUB79PHiQVeXJ7Q",
+                    "Elements of Computer Science and Engineering": "https://drive.google.com/drive/folders/19ovlMV7U5L2AnJ2M-ZX0qGiVZTR05YfV"
+                }
+            }
+        };
+
+        const branch = localStorage.getItem('selectedBranch');
+        const semester = localStorage.getItem('selectedSemester');
+        document.getElementById("header").innerText = `${branch} - Semester ${semester}`;
+
+        const subjectList = document.getElementById("subjectList");
+        if (subjects[branch] && subjects[branch][semester]) {
+            Object.entries(subjects[branch][semester]).forEach(([subject, link]) => {
+                let li = document.createElement("li");
+                let a = document.createElement("a");
+                a.innerText = subject;
+                a.href = link;
+                a.target = "_blank"; // Opens in a new tab
+                li.appendChild(a);
+                subjectList.appendChild(li);
+            });
+        } else {
+            subjectList.innerHTML = "<li>No subjects available</li>";
+        }
+
+        function goBack() {
+            window.location.href = 'semesters.html';
+        }
+    </script>
+</body>
+</html>
