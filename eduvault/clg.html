@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Resources</title>
+    <link rel="stylesheet" href="styles1.css">
+</head>
+<body>
+
+    <div class="navbar">
+        <a href="index.html">Home</a>
+        <a href="about.html">About Us</a>
+        <a href="faqs.html">FAQs</a>
+        <a href="contact.html">Contact Us</a>
+    </div>
+
+    <div class="container">
+        <h1>Select Your Branch</h1>
+        <div class="branches">
+            <div class="branch-box">
+                <img src="cse.webp" alt="CSE Branch">
+                <button onclick="selectBranch('CSE')">CSE</button>
+            </div>
+            <div class="branch-box">
+                <img src="csm.jpeg" alt="CSM Branch">
+                <button onclick="selectBranch('CSM')">CSM</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>&copy; EduVault. All rights reserved.</p>
+        <p><a href="contact.html">Contact Us</a></p>
+    </div>
+
+    <script>
+        function selectBranch(branch) {
+            localStorage.setItem('selectedBranch', branch);
+            window.location.href = 'semesters.html';
+        }
+    </script>
+
+</body>
+</html>
