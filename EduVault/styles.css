@@ -550,6 +550,7 @@ button:hover ~ .cursor {
   transition: var(--transition);
 }
 
+
 .faq-question {
   padding: 20px;
   cursor: pointer;
