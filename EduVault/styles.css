@@ -532,8 +532,13 @@ button:hover ~ .cursor {
 .faq-section {
   max-width: 900px;
   margin: 0 auto;
-  text-align: left;
   padding: 0 20px;
+  text-align: left; /* Left-aligns all content except the h1 */
+}
+
+/* Keep the main FAQ heading centered */
+.container h1 {
+  text-align: center;
 }
 
 .faq-item {
@@ -543,10 +548,6 @@ button:hover ~ .cursor {
   overflow: hidden;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: var(--transition);
-}
-
-.faq-item:hover {
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
 .faq-question {
@@ -562,10 +563,7 @@ button:hover ~ .cursor {
   margin: 0;
   color: var(--text-primary);
   font-weight: 600;
-}
-
-.faq-question i {
-  transition: var(--transition);
+  text-align: left; /* Explicit left-align for question text */
 }
 
 .faq-answer {
@@ -573,15 +571,10 @@ button:hover ~ .cursor {
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.3s ease, padding 0.3s ease;
+  text-align: left; /* Explicit left-align for answer text */
 }
 
 .faq-item.active .faq-answer {
   padding: 20px;
   max-height: 500px;
-}
-
-.faq-answer p {
-  margin: 0;
-  line-height: 1.6;
-  color: var(--text-secondary);
 }
