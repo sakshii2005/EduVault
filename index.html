@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EduVault - Select Semester</title>
+    <title>EduVault - College Resources</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
-<body>
+<body class="blue-theme">
     <div class="navbar">
         <div class="navbar-container">
-            <a href="clg.html" class="logo">EduVault</a>
+            <a href="index.html" class="logo">EduVault</a>
             <div class="nav-links">
-                <a href="clg.html"><i class="fas fa-home"></i> Home</a>
+                <a href="index.html"><i class="fas fa-home"></i> Home</a>
                 <a href="about.html"><i class="fas fa-info-circle"></i> About</a>
                 <a href="faqs.html"><i class="fas fa-question-circle"></i> FAQs</a>
                 <a href="contact.html"><i class="fas fa-envelope"></i> Contact</a>
@@ -22,18 +22,25 @@
     </div>
 
     <div class="container">
-        <h1 id="branchHeader">Select Semester</h1>
-        <div class="semester-grid">
-            <button class="semester-button" onclick="selectSemester(1)">Semester 1</button>
-            <button class="semester-button" onclick="selectSemester(2)">Semester 2</button>
-            <button class="semester-button" onclick="selectSemester(3)">Semester 3</button>
-            <button class="semester-button" onclick="selectSemester(4)">Semester 4</button>
-            <button class="semester-button" onclick="selectSemester(5)">Semester 5</button>
-            <button class="semester-button" onclick="selectSemester(6)">Semester 6</button>
-            <button class="semester-button" onclick="selectSemester(7)">Semester 7</button>
-            <button class="semester-button" onclick="selectSemester(8)">Semester 8</button>
+        <h1>Select Your Branch</h1>
+        <div class="branches">
+            <div class="branch-box">
+                <div class="branch-image">
+                    <img src="cse.webp" alt="CSE Branch">
+                </div>
+                <div class="branch-content">
+                    <button onclick="selectBranch('CSE')">Computer Science</button>
+                </div>
+            </div>
+            <div class="branch-box">
+                <div class="branch-image">
+                    <img src="csm.jpeg.jpg" alt="CSM Branch">
+                </div>
+                <div class="branch-content">
+                    <button onclick="selectBranch('CSM')">Computer Science & ML</button>
+                </div>
+            </div>
         </div>
-        <button class="back-button" onclick="goBack()"><i class="fas fa-arrow-left"></i> Back</button>
     </div>
 
     <div class="theme-toggles">
@@ -53,44 +60,47 @@
     </div>
 
     <script>
-        // Display branch name in header
-        const branch = localStorage.getItem('selectedBranch');
-        const branchDisplay = branch === 'CSE' ? 'Computer Science Engineering' : 'Computer Science & Machine Learning';
-        document.getElementById("branchHeader").innerText = `${branchDisplay} - Select Semester`;
-        
-        function selectSemester(semester) {
-            localStorage.setItem('selectedSemester', semester);
-            window.location.href = 'subjects.html';
+        function selectBranch(branch) {
+            localStorage.setItem('selectedBranch', branch);
+            window.location.href = 'semesters.html';
         }
         
-        function goBack() {
-            window.location.href = 'clg.html';
-        }
-
-        function toggleColorTheme() {
-        const isBlue = document.body.classList.contains('blue-theme');
-        if (isBlue) {
-            document.body.classList.remove('blue-theme');
-            document.body.classList.add('pink-theme');
-            localStorage.setItem('colorTheme', 'pink');
-        } else {
-            document.body.classList.remove('pink-theme');
-            document.body.classList.add('blue-theme');
-            localStorage.setItem('colorTheme', 'blue');
+        function toggleTheme() {
+            document.body.classList.toggle('light-theme');
+            const themeIcon = document.querySelector('.theme-toggle i');
+            if (document.body.classList.contains('light-theme')) {
+                themeIcon.className = 'fas fa-moon';
+                localStorage.setItem('theme', 'light');
+            } else {
+                themeIcon.className = 'fas fa-sun';
+                localStorage.setItem('theme', 'dark');
             }
         }
-
-
+        
+        function toggleColorTheme() {
+            const isBlue = document.body.classList.contains('blue-theme');
+            if (isBlue) {
+                document.body.classList.remove('blue-theme');
+                document.body.classList.add('pink-theme');
+                localStorage.setItem('colorTheme', 'pink');
+            } else {
+                document.body.classList.remove('pink-theme');
+                document.body.classList.add('blue-theme');
+                localStorage.setItem('colorTheme', 'blue');
+            }
+        }
+        
+        // Check for saved theme preferences
         document.addEventListener('DOMContentLoaded', () => {
             const savedTheme = localStorage.getItem('theme');
             const savedColorTheme = localStorage.getItem('colorTheme');
             const themeIcon = document.querySelector('.theme-toggle i');
-    
+            
             if (savedTheme === 'light') {
                 document.body.classList.add('light-theme');
                 themeIcon.className = 'fas fa-moon';
             }
-    
+            
             if (savedColorTheme === 'pink') {
                 document.body.classList.remove('blue-theme');
                 document.body.classList.add('pink-theme');
