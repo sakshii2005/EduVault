@@ -114,7 +114,7 @@ body {
 
 .branch-box:hover {
   transform: translateY(-10px);
-  box-shadow: 0 15px 30px rgba(0, 188, 212, 0.2);
+  box-shadow: 0 15px 30px var(--hover-color);
 }
 
 .branch-image {
