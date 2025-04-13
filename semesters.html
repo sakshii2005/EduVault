@@ -2,14 +2,13 @@
 <html lang="en">
 <head>
     <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-FH0G5HJ3E6"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-FH0G5HJ3E6');
-</script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FH0G5HJ3E6"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-FH0G5HJ3E6');
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EduVault - Select Semester</title>
@@ -62,44 +61,57 @@
     </div>
 
     <script>
-        // Display branch name in header
         const branch = localStorage.getItem('selectedBranch');
         const branchDisplay = branch === 'CSE' ? 'Computer Science Engineering' : 'Computer Science & Machine Learning';
         document.getElementById("branchHeader").innerText = `${branchDisplay} - Select Semester`;
-        
+
         function selectSemester(semester) {
             localStorage.setItem('selectedSemester', semester);
             window.location.href = 'subjects.html';
         }
-        
+
         function goBack() {
             window.location.href = 'index.html';
         }
 
-        function toggleColorTheme() {
-        const isBlue = document.body.classList.contains('blue-theme');
-        if (isBlue) {
-            document.body.classList.remove('blue-theme');
-            document.body.classList.add('pink-theme');
-            localStorage.setItem('colorTheme', 'pink');
-        } else {
-            document.body.classList.remove('pink-theme');
-            document.body.classList.add('blue-theme');
-            localStorage.setItem('colorTheme', 'blue');
+        function toggleTheme() {
+            const root = document.documentElement;
+            const themeIcon = document.querySelector('.theme-toggle i');
+
+            root.classList.toggle('light-theme');
+
+            if (root.classList.contains('light-theme')) {
+                themeIcon.className = 'fas fa-moon';
+                localStorage.setItem('theme', 'light');
+            } else {
+                themeIcon.className = 'fas fa-sun';
+                localStorage.setItem('theme', 'dark');
             }
         }
 
+        function toggleColorTheme() {
+            const isBlue = document.body.classList.contains('blue-theme');
+            if (isBlue) {
+                document.body.classList.remove('blue-theme');
+                document.body.classList.add('pink-theme');
+                localStorage.setItem('colorTheme', 'pink');
+            } else {
+                document.body.classList.remove('pink-theme');
+                document.body.classList.add('blue-theme');
+                localStorage.setItem('colorTheme', 'blue');
+            }
+        }
 
         document.addEventListener('DOMContentLoaded', () => {
             const savedTheme = localStorage.getItem('theme');
             const savedColorTheme = localStorage.getItem('colorTheme');
             const themeIcon = document.querySelector('.theme-toggle i');
-    
+
             if (savedTheme === 'light') {
-                document.body.classList.add('light-theme');
+                document.documentElement.classList.add('light-theme');
                 themeIcon.className = 'fas fa-moon';
             }
-    
+
             if (savedColorTheme === 'pink') {
                 document.body.classList.remove('blue-theme');
                 document.body.classList.add('pink-theme');
